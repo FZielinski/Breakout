@@ -55,4 +55,3 @@ class Ball(Turtle):
             self.dir_y = -1
             self.direction = 0
         return self.dir_x, self.dir_y
-    
