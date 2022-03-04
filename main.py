@@ -21,8 +21,16 @@ screen.onkey(fun=player.move_left, key="Left")
 screen.onkey(fun=player.move_right, key="Right")
 
 while not game_over:
-    time.sleep(0.02)
-    ball.move_ball()
+
     screen.update()
+    time.sleep(0.000001)
+    ball.move_ball()
+    if ball.distance(player) < 35 and ball.ycor() < -265:
+        ball.detect_collision_with_player()
+    for brick in board.bricks_wall:
+        if ball.distance(brick) < 35:
+            ball.detect_collision_with_brick()
+            board.destroy_brick(brick)
+            break
 
 screen.exitonclick()
