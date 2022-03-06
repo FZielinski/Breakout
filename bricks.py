@@ -25,10 +25,10 @@ class BricksWall(Brick):
         self.y_start = 250
 
     def create_board(self):
-        for j in range(3):
+        for j in range(1):
             brick = Brick(self.x_start, self.y_start)
             self.bricks_wall.append(brick)
-            for i in range(9):
+            for i in range(1):
                 brick = Brick(self.bricks_wall[len(self.bricks_wall) - 1].xcor() + 55,
                               self.bricks_wall[len(self.bricks_wall) - 1].ycor())
                 self.bricks_wall.append(brick)

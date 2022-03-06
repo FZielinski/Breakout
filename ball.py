@@ -29,11 +29,11 @@ class Ball(Turtle):
         self.direction = 1
         self.speed(10)
 
-    def move_ball(self):
+    def move_ball(self, level):
         self.detect_collision_with_wall()
         # count new_x based on tangens fun
-        new_x = self.xcor() + (math.tan(abs(self.angle)) * 5 * self.dir_x)
-        new_y = self.ycor() + (5 * self.dir_y)
+        new_x = self.xcor() + (math.tan(abs(self.angle)) * (5+level) * self.dir_x)
+        new_y = self.ycor() + ((5+level) * self.dir_y)
         self.goto(new_x, new_y)
 
     def detect_collision_with_wall(self):
@@ -54,15 +54,22 @@ class Ball(Turtle):
                 self.dir_y = -1
             self.dir_x = 1
         # Y axis right up collision
-        elif self.distance(current_x_pos, 300) < 20:
+        elif self.distance(current_x_pos, 260) < 20:
             self.dir_y = -1
             self.direction = -1
         return self.dir_x, self.dir_y
 
-    def detect_collision_with_player(self):
+    def collision_with_player(self):
         self.direction = 1
         self.dir_y = 1
         
-    def detect_collision_with_brick(self):
+    def collision_with_brick(self):
         self.direction *= -1
         self.dir_y *= -1
+        
+    def restart_level(self):
+        self.hideturtle()
+        self.direction = 1
+        self.dir_y = 1
+        self.goto(0, -262)
+        self.showturtle()
